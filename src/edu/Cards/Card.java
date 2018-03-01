@@ -11,13 +11,9 @@ public abstract class Card {
         return id;
     }
 
-    public abstract boolean verify();
-
-    @Override
-    public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", ownerType=" + ownerType +
-                '}';
+    public OwnerType getOwnerType() {
+        return ownerType;
     }
+
+    public abstract boolean verify();
 }
