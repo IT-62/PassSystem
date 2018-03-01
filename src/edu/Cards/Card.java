@@ -17,6 +17,7 @@ public abstract class Card {
     public String toString() {
         return "Card{" +
                 "id=" + id +
+                ", ownerType=" + ownerType +
                 '}';
     }
 }
