@@ -10,7 +10,7 @@ public class CumulativeCard extends Card {
         this.balance = balance;
         this.travelPrice = travelPrice;
     }
-    //SetBalance provides extra freedom.
+    //SetBalance provides extra freedom. I guess...
     public void replenish(int amount){
         balance+=amount;
     }
@@ -24,7 +24,7 @@ public class CumulativeCard extends Card {
 
     @Override
     public boolean verify() {
-
+        if(withdraw()) return true;
         return false;
     }
 }
