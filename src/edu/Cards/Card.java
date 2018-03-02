@@ -11,6 +11,11 @@ public abstract class Card {
         return id;
     }
 
+    public Card(UUID id, OwnerType ownerType) {
+        this.id = id;
+        this.ownerType = ownerType;
+    }
+
     public OwnerType getOwnerType() {
         return ownerType;
     }
