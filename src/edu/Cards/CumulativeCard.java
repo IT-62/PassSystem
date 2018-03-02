@@ -1,12 +1,15 @@
 package edu.Cards;
 
+import edu.options.OwnerType;
+
 import java.util.UUID;
 
 public class CumulativeCard extends Card {
     private int balance;
     private int travelPrice;
 
-    public CumulativeCard(UUID id, int balance, int travelPrice) {
+    public CumulativeCard(UUID id, OwnerType ownerType, int balance, int travelPrice) {
+        super(id, ownerType);
         this.balance = balance;
         this.travelPrice = travelPrice;
     }

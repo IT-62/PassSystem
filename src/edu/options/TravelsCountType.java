@@ -4,13 +4,13 @@ public enum  TravelsCountType {
     FIVE(5),
     TEN(10);
 
-    private int passesLeft;
+    private int travelsLeft;
 
     TravelsCountType(int passesLeft) {
-        this.passesLeft = passesLeft;
+        this.travelsLeft = passesLeft;
     }
 
-    public int getPassesLeft() {
-        return passesLeft;
+    public int getTravelsLeft() {
+        return travelsLeft;
     }
 }
