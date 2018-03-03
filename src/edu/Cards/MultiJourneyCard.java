@@ -18,6 +18,10 @@ public class MultiJourneyCard extends Card {
         return travelsLeft;
     }
 
+    public TravelsCountType getTravelsCountType() {
+        return travelsCountType;
+    }
+
     @Override
     public boolean verify() {
         if(travelsLeft > 0){
