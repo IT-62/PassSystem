@@ -54,7 +54,9 @@ public class ControlSystem {
 
     public String getCardInfo(UUID id) {
         Card card = getCardById(id);
-        return card.getID() + " " + card.getOwnerType().toString() + " " + card.toString() + "\n";
+        return "Card ID: " + card.getID() + "\n" +
+               "Owner type: " + card.getOwnerType().toString() + "\n" +
+               card.toString();
     }
 
     public Card getCardByIndex(int index){

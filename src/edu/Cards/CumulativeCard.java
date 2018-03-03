@@ -35,6 +35,7 @@ public class CumulativeCard extends Card {
 
     @Override
     public String toString() {
-        return "Cumulative card:" + balance;
+        return "Card type: cumulative card\n" +
+               "Balance: " + balance + "\n";
     }
 }
