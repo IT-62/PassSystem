@@ -7,29 +7,29 @@ import edu.Cards.TemporaryCard;
 import edu.options.DurationType;
 import edu.options.OwnerType;
 import edu.options.TravelsCountType;
-
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class ContolSystem {
-    private  static ContolSystem instance;
+public class ControlSystem {
+    private  static ControlSystem instance;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Turnstile> turnstiles = new ArrayList<>();
-    public int travelPrice = 4;
     public ArrayList<Pass> passes = new ArrayList<>();
+    public int travelPrice = 4;
+    private static int turnstilesCount = 0;
   
-    private ContolSystem() {
+    private ControlSystem() {
     }
 
-    public static ContolSystem getInstance() {
+    public static ControlSystem getInstance() {
         if(instance == null) {
-            instance = new ContolSystem();
+            instance = new ControlSystem();
         }
         return instance;
     }
 
-    public void createTurnstile(ContolSystem contolSystem, UUID id) {
-
+    public void createTurnstile() {
+        turnstiles.add(new Turnstile(this, turnstilesCount++));
     }
 
     public void createCard(OwnerType ownerType, int balance) {
