@@ -32,8 +32,8 @@ public class ControlSystem {
         turnstiles.add(new Turnstile(this, turnstilesCount++));
     }
 
-    public void createCard(OwnerType ownerType, int balance) {
-        cards.add(new CumulativeCard(UUID.randomUUID(), ownerType, balance, travelPrice));
+    public void createCard(int balance) {
+        cards.add(new CumulativeCard(UUID.randomUUID(), balance, travelPrice));
     }
 
     public void createCard(OwnerType ownerType, TravelsCountType travelsCountType) {
@@ -69,7 +69,6 @@ public class ControlSystem {
         return null;
     }
 
-
     public ArrayList<TemporaryCard> getTemporaryCard(){
         ArrayList<TemporaryCard> temporaryCardsList = new ArrayList<>();
         for(Card card : cards) {
@@ -84,5 +83,9 @@ public class ControlSystem {
             if(card instanceof MultiJourneyCard) multiJourneyCardsList.add((MultiJourneyCard)card);
         }
         return null;
+    }
+
+    public int getCountOfPasses(){
+        return -1;
     }
 }

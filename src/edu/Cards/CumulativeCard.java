@@ -8,8 +8,8 @@ public class CumulativeCard extends Card {
     private int balance;
     private int travelPrice;
 
-    public CumulativeCard(UUID id, OwnerType ownerType, int balance, int travelPrice) {
-        super(id, ownerType);
+    public CumulativeCard(UUID id, int balance, int travelPrice) {
+        super(id, null);
         this.balance = balance;
         this.travelPrice = travelPrice;
     }
