@@ -73,7 +73,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<TemporaryCard> getTemporaryCard(){
+    public ArrayList<TemporaryCard> getTemporaryCardList(){
         ArrayList<TemporaryCard> temporaryCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof TemporaryCard) temporaryCardsList.add((TemporaryCard)card);
@@ -81,7 +81,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<MultiJourneyCard> getMultiJourneyCard(){
+    public ArrayList<MultiJourneyCard> getMultiJourneyCardList(){
         ArrayList<MultiJourneyCard> multiJourneyCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof MultiJourneyCard) multiJourneyCardsList.add((MultiJourneyCard)card);
