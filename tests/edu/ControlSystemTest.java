@@ -1,4 +1,4 @@
-package edu.tests;
+package edu;
 
 import edu.Cards.CumulativeCard;
 import edu.Cards.MultiJourneyCard;
