@@ -5,35 +5,26 @@ import edu.Cards.MultiJourneyCard;
 import edu.Cards.TemporaryCard;
 
 public class Turnstile {
-    private ContolSystem contolSystem;
+    private ControlSystem controlSystem;
     private int id;
-    public Turnstile(ContolSystem contolSystem, int id) {
-        this.contolSystem = contolSystem;
+    public Turnstile(ControlSystem controlSystem, int id) {
+        this.controlSystem = controlSystem;
         this.id = id;
     }
 
     public boolean acceptPass(CumulativeCard cumulativeCard) {
         boolean passes = cumulativeCard.verify();
-        contolSystem.passes.add(new Pass(passes, id, cumulativeCard.getID(), contolSystem));
-        if(passes) {
-            return true;
-        }
-        return false;
+        controlSystem.passes.add(new Pass(passes, id, cumulativeCard.getID(), controlSystem));
+        return passes;
     }
     public boolean acceptPass(MultiJourneyCard multiJourneyCard) {
         boolean passes = multiJourneyCard.verify();
-        contolSystem.passes.add(new Pass(passes, id, multiJourneyCard.getID(), contolSystem));
-        if(passes){
-            return true;
-        }
-        return false;
+        controlSystem.passes.add(new Pass(passes, id, multiJourneyCard.getID(), controlSystem));
+        return passes;
     }
     public boolean acceptPass(TemporaryCard temporaryCard) {
         boolean passes = temporaryCard.verify();
-        contolSystem.passes.add(new Pass(passes, id, temporaryCard.getID(), contolSystem));
-        if(passes){
-            return true;
-        }
-        return false;
+        controlSystem.passes.add(new Pass(passes, id, temporaryCard.getID(), controlSystem));
+        return passes;
     }
 }

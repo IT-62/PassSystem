@@ -8,14 +8,14 @@ public class Pass {
     private boolean passed;
     private int turnstileId;
     private UUID cardId;
-    private ContolSystem contolSystem;
+    private ControlSystem controlSystem;
 
-    public Pass(boolean passed, int turnstileId, UUID cardId, ContolSystem contolSystem) {
+    public Pass(boolean passed, int turnstileId, UUID cardId, ControlSystem controlSystem) {
         this.passed = passed;
         this.turnstileId = turnstileId;
         this.cardId = cardId;
         passDate = new Date(new Date().getTime());
-        this.contolSystem = contolSystem;
+        this.controlSystem = controlSystem;
     }
 
     public Date getPassDate() {
@@ -36,6 +36,6 @@ public class Pass {
 
     @Override
     public String toString() {
-        return contolSystem.getCardInfo(cardId) + " " + passed + " " + turnstileId + " " + cardId.toString() + "\n";
+        return controlSystem.getCardInfo(cardId) + " " + passed + " " + turnstileId + " " + cardId.toString() + "\n";
     }
 }
