@@ -29,9 +29,9 @@ public class ControlSystemTest {
     @Test
     public void testPasses(){
         ControlSystem controlSystem = ControlSystem.getInstance();
-        controlSystem.createCard(OwnerType.PUPIL,44);
-        controlSystem.createCard(OwnerType.STUDENT,44);
-        controlSystem.createCard(OwnerType.DEFAULT,44);
+        controlSystem.createCard(44);
+        controlSystem.createCard(44);
+        controlSystem.createCard(44);
         controlSystem.createCard(OwnerType.PUPIL, TravelsCountType.FIVE);
         controlSystem.createCard(OwnerType.STUDENT, TravelsCountType.TEN);
         controlSystem.createCard(OwnerType.PUPIL, DurationType.MONTH);
