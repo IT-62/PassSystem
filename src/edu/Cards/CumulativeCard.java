@@ -32,4 +32,9 @@ public class CumulativeCard extends Card {
     public boolean verify() {
         return withdraw();
     }
+
+    @Override
+    public String toString() {
+        return "Cumulative card:" + balance;
+    }
 }

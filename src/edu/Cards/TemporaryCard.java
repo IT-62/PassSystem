@@ -27,4 +27,9 @@ public class TemporaryCard extends Card {
     public boolean verify() {
         return new Date().before(getExpirationDate());
     }
+
+    @Override
+    public String toString() {
+        return "Teomporary card: " + getExpirationDate().toString();
+    }
 }

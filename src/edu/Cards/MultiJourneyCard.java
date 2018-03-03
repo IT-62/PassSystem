@@ -26,4 +26,9 @@ public class MultiJourneyCard extends Card {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Multijourney card: " + getTravelsLeft();
+    }
 }
