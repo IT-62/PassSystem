@@ -36,6 +36,6 @@ public class Pass {
 
     @Override
     public String toString() {
-        return controlSystem.getCardInfo(cardId) + " " + passed + " " + turnstileId + " " + cardId.toString() + "\n";
+        return controlSystem.getCardInfo(cardId) + " " + passed + " " + turnstileId  + "\n";
     }
 }

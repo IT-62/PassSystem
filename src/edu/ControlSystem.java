@@ -13,7 +13,7 @@ import java.util.UUID;
 public class ControlSystem {
     private  static ControlSystem instance;
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Turnstile> turnstiles = new ArrayList<>();
+    public ArrayList<Turnstile> turnstiles = new ArrayList<>();
     public ArrayList<Pass> passes = new ArrayList<>();
     public int travelPrice = 4;
     private static int turnstilesCount = 0;
@@ -55,5 +55,9 @@ public class ControlSystem {
     public String getCardInfo(UUID id) {
         Card card = getCardById(id);
         return card.getID() + " " + card.getOwnerType().toString() + " " + card.toString() + "\n";
+    }
+
+    public Card getCardByIndex(int index){
+        return cards.get(index);
     }
 }
