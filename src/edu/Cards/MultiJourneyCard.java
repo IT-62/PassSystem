@@ -29,6 +29,7 @@ public class MultiJourneyCard extends Card {
 
     @Override
     public String toString() {
-        return "Multijourney card: " + getTravelsLeft();
+        return "Card type: multijourney card\n" +
+               "Travels left: " + getTravelsLeft() + "\n";
     }
 }

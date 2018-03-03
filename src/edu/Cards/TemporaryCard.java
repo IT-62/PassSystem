@@ -30,6 +30,7 @@ public class TemporaryCard extends Card {
 
     @Override
     public String toString() {
-        return "Teomporary card: " + getExpirationDate().toString();
+        return "Card type: temporary card\n" +
+               "Expiration date: " + getExpirationDate().toString() + "\n";
     }
 }
