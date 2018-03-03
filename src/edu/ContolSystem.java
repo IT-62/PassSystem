@@ -8,15 +8,13 @@ import edu.options.DurationType;
 import edu.options.OwnerType;
 import edu.options.TravelsCountType;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 public class ContolSystem {
     private  static ContolSystem instance;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Turnstile> turnstiles = new ArrayList<>();
     public int travelPrice = 4;
-
+    public ArrayList<Pass> passes = new ArrayList<>();
+  
     private ContolSystem() {
     }
 
