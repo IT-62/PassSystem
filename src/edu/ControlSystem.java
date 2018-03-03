@@ -60,4 +60,29 @@ public class ControlSystem {
     public Card getCardByIndex(int index){
         return cards.get(index);
     }
+
+    public ArrayList<CumulativeCard> getCumulativeCardList(){
+        ArrayList<CumulativeCard> cumulativeCardsList = new ArrayList<>();
+        for(Card card : cards) {
+           if(card instanceof CumulativeCard) cumulativeCardsList.add((CumulativeCard)card);
+        }
+        return null;
+    }
+
+
+    public ArrayList<TemporaryCard> getTemporaryCard(){
+        ArrayList<TemporaryCard> temporaryCardsList = new ArrayList<>();
+        for(Card card : cards) {
+            if(card instanceof TemporaryCard) temporaryCardsList.add((TemporaryCard)card);
+        }
+        return null;
+    }
+
+    public ArrayList<MultiJourneyCard> getMultiJourneyCard(){
+        ArrayList<MultiJourneyCard> multiJourneyCardsList = new ArrayList<>();
+        for(Card card : cards) {
+            if(card instanceof MultiJourneyCard) multiJourneyCardsList.add((MultiJourneyCard)card);
+        }
+        return null;
+    }
 }

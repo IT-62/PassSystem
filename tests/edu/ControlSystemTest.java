@@ -1,4 +1,4 @@
-package edu.tests;
+package edu;
 
 import edu.Cards.CumulativeCard;
 import edu.Cards.MultiJourneyCard;
@@ -49,6 +49,7 @@ public class ControlSystemTest {
         for (Pass pass : controlSystem.passes) {
             System.out.println(pass.toString());
         }
+
     }
 
 }
