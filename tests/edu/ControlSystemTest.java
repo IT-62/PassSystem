@@ -24,7 +24,8 @@ public class ControlSystemTest {
 
     @After
     public void tearDown() throws Exception {
-        controlSystem = null;
+        controlSystem.deleteInstance();
+       // controlSystem.passes = new  ArrayList<>();
     }
     @Test
     public void testPasses(){
@@ -37,13 +38,13 @@ public class ControlSystemTest {
 
     public void addCardsAndTurnstiles() {
         controlSystem = ControlSystem.getInstance();
+
         controlSystem.createCard(7);
         controlSystem.createCard(44);
         controlSystem.createCard(OwnerType.PUPIL, TravelsCountType.FIVE);
         controlSystem.createCard(OwnerType.STUDENT, TravelsCountType.TEN);
         controlSystem.createCard(OwnerType.PUPIL, DurationType.MONTH);
         controlSystem.createCard(OwnerType.DEFAULT, DurationType.TEN_DAYS);
-
         controlSystem.createTurnstile();
         controlSystem.createTurnstile();
         controlSystem.createTurnstile();
@@ -62,10 +63,6 @@ public class ControlSystemTest {
     @Test
     public void testGetCountOfTries() {
         assertEquals(6,controlSystem.getCountOfTries());
-        controlSystem.passes = new ArrayList<>();
-//        for (Pass pass : controlSystem.passes) {
-//            System.out.println(pass.toString());
-//        }
     }
 
     @Test
@@ -74,13 +71,11 @@ public class ControlSystemTest {
         assertNotEquals(6, controlSystem.getCountOfPasses());
         assertNotEquals("*", controlSystem.getCountOfPasses());
         assertNotEquals(0, controlSystem.getCountOfPasses());
-        controlSystem.passes = new ArrayList<>();
     }
 
     @Test
     public void testGetCountOfFailes() {
         assertEquals(1, controlSystem.getCountOfFailes());
-        controlSystem.passes = new ArrayList<>();
     }
     
 

@@ -30,6 +30,10 @@ public class ControlSystem {
         return instance;
     }
 
+    public static void deleteInstance() {
+        if(instance instanceof ControlSystem) instance = null;
+    }
+
     public void createTurnstile() {
         turnstiles.add(new Turnstile(this, turnstilesCount++));
     }
