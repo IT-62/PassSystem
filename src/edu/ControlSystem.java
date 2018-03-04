@@ -94,11 +94,11 @@ public class ControlSystem {
     }
 
     public int getCountOfPasses(){
-        int ans = 0;
+        int res = 0;
         for (Pass pass : passes) {
-            if(pass.isPassed()) ans++;
+            if(pass.isPassed()) res++;
         }
-        return ans;
+        return res;
     }
 
     public int getCountOfFailes(){

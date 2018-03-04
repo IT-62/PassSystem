@@ -19,18 +19,25 @@ public class ControlSystemTest {
     ControlSystem controlSystem;
     @Before
     public void setUp() throws Exception {
-
+        addCardsAndTurnstiles();
     }
 
     @After
     public void tearDown() throws Exception {
-
+        controlSystem = null;
     }
     @Test
     public void testPasses(){
-        ControlSystem controlSystem = ControlSystem.getInstance();
-        controlSystem.createCard(44);
-        controlSystem.createCard(44);
+        System.out.println(controlSystem.getCountOfTriesByCumulativeCard());
+        for (Pass pass : controlSystem.passes) {
+            System.out.println(pass.toString());
+        }
+
+    }
+
+    public void addCardsAndTurnstiles() {
+        controlSystem = ControlSystem.getInstance();
+        controlSystem.createCard(7);
         controlSystem.createCard(44);
         controlSystem.createCard(OwnerType.PUPIL, TravelsCountType.FIVE);
         controlSystem.createCard(OwnerType.STUDENT, TravelsCountType.TEN);
@@ -43,18 +50,37 @@ public class ControlSystemTest {
         controlSystem.createTurnstile();
 
         controlSystem.turnstiles.get(0).acceptPass((CumulativeCard) controlSystem.getCardByIndex(0));
+        controlSystem.turnstiles.get(0).acceptPass((CumulativeCard) controlSystem.getCardByIndex(0));
         controlSystem.turnstiles.get(1).acceptPass((CumulativeCard) controlSystem.getCardByIndex(1));
-        controlSystem.turnstiles.get(2).acceptPass((CumulativeCard) controlSystem.getCardByIndex(2));
-        controlSystem.turnstiles.get(3).acceptPass((MultiJourneyCard) controlSystem.getCardByIndex(3));
-        controlSystem.turnstiles.get(0).acceptPass((TemporaryCard) controlSystem.getCardByIndex(5));
-
-        System.out.println(controlSystem.getCountOfTriesByCumulativeCard());
-
-        for (Pass pass : controlSystem.passes) {
-            System.out.println(pass.toString());
-        }
+        controlSystem.turnstiles.get(2).acceptPass((CumulativeCard) controlSystem.getCardByIndex(1));
+        controlSystem.turnstiles.get(3).acceptPass((MultiJourneyCard) controlSystem.getCardByIndex(2));
+        controlSystem.turnstiles.get(0).acceptPass((TemporaryCard) controlSystem.getCardByIndex(4));
 
 
+    }
+
+    @Test
+    public void testGetCountOfTries() {
+        assertEquals(6,controlSystem.getCountOfTries());
+        controlSystem.passes = new ArrayList<>();
+//        for (Pass pass : controlSystem.passes) {
+//            System.out.println(pass.toString());
+//        }
+    }
+
+    @Test
+    public void testGetCountOfPasses() {
+        assertEquals(5, controlSystem.getCountOfPasses());
+        assertNotEquals(6, controlSystem.getCountOfPasses());
+        assertNotEquals("*", controlSystem.getCountOfPasses());
+        assertNotEquals(0, controlSystem.getCountOfPasses());
+        controlSystem.passes = new ArrayList<>();
+    }
+
+    @Test
+    public void testGetCountOfFailes() {
+        assertEquals(1, controlSystem.getCountOfFailes());
+        controlSystem.passes = new ArrayList<>();
     }
     
 
