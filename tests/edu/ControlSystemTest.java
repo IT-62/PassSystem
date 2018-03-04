@@ -78,11 +78,47 @@ public class ControlSystemTest {
     }
     
     @Test
+    public void testGetCountOfTriesByCumulativeCard() {
+        assertEquals(4, controlSystem.getCountOfTriesByCumulativeCard());
+        assertNotEquals(3, controlSystem.getCountOfTriesByCumulativeCard());
+    }
+
+    @Test
+    public void testGetCountOfPassesByCumulativeCard() {
+        assertEquals(3, controlSystem.getCountOfPassesByCumulativeCard());
+        assertNotEquals(2, controlSystem.getCountOfPassesByCumulativeCard());
+    }
+
+    @Test
+    public void testGetCountOfFailsByCumulativeCard() {
+        assertEquals(1, controlSystem.getCountOfFailsByCumulativeCard());
+        assertNotEquals(0, controlSystem.getCountOfFailsByCumulativeCard());
+    }
+
+    @Test
+    public void testGetCountOfTriesByMultiJourneyCard() {
+        assertEquals(1, controlSystem.getCountOfTriesByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfTriesByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
+    @Test
+    public void testGetCountOfPassesByMultiJourneyCard() {
+        assertEquals(1, controlSystem.getCountOfPassesByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfPassesByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
+    @Test
+    public void testGetCountOfFailsByMultiJourneyCard() {
+        assertEquals(0, controlSystem.getCountOfFailsByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfFailsByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
+    @Test
     public void testGetCountOfTriesByTemporaryCard() {
         assertEquals(0, controlSystem.getCountOfTriesByTemporaryCard("DEFAULT", "TEN_DAYS"));
         assertEquals(1, controlSystem.getCountOfTriesByTemporaryCard("PUPIL", "MONTH"));
     }
-
+  
     @Test
     public void testGetCountOfPassesByTemporaryCard() {
         assertEquals(0, controlSystem.getCountOfPassesByTemporaryCard("DEFAULT", "TEN_DAYS"));

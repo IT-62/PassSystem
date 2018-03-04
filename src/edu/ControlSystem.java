@@ -141,10 +141,12 @@ public class ControlSystem {
             return -1;
         }
         for (Pass pass : passes) {
-            MultiJourneyCard multiJourneyCard = (MultiJourneyCard) getCardById(pass.getCardId());
-            if(multiJourneyCard instanceof MultiJourneyCard
-                    && multiJourneyCard.getOwnerType() == ownerType
-                    && multiJourneyCard.getTravelsCountType() == travelsCountType) res++;
+            Card card = getCardById(pass.getCardId());
+            if(card instanceof MultiJourneyCard) {
+                MultiJourneyCard multiJourneyCard = (MultiJourneyCard)card;
+                if(multiJourneyCard.getOwnerType() == ownerType
+                        && multiJourneyCard.getTravelsCountType() == travelsCountType) res++;
+            }
         }
         return res;
     }
@@ -161,11 +163,13 @@ public class ControlSystem {
             return -1;
         }
         for (Pass pass : passes) {
-            MultiJourneyCard multiJourneyCard = (MultiJourneyCard) getCardById(pass.getCardId());
-            if(multiJourneyCard instanceof MultiJourneyCard
-                    && multiJourneyCard.getOwnerType() == ownerType
-                    && multiJourneyCard.getTravelsCountType() == travelsCountType
-                    && pass.isPassed()) res++;
+            Card card = getCardById(pass.getCardId());
+            if(card instanceof MultiJourneyCard) {
+                MultiJourneyCard multiJourneyCard = (MultiJourneyCard)card;
+                if(multiJourneyCard.getOwnerType() == ownerType
+                        && multiJourneyCard.getTravelsCountType() == travelsCountType
+                        && pass.isPassed()) res++;
+            }
         }
         return res;
     }
