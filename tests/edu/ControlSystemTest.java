@@ -25,7 +25,6 @@ public class ControlSystemTest {
     @After
     public void tearDown() throws Exception {
         controlSystem.deleteInstance();
-       // controlSystem.passes = new  ArrayList<>();
     }
     @Test
     public void testPasses(){
@@ -74,9 +73,26 @@ public class ControlSystemTest {
     }
 
     @Test
-    public void testGetCountOfFailes() {
-        assertEquals(1, controlSystem.getCountOfFailes());
+    public void testGetCountOfFails() {
+        assertEquals(1, controlSystem.getCountOfFails());
     }
-    
+
+    @Test
+    public void testGetCountOfTriesByCumulativeCard() {
+        assertEquals(4, controlSystem.getCountOfTriesByCumulativeCard());
+        assertNotEquals(3, controlSystem.getCountOfTriesByCumulativeCard());
+    }
+
+    @Test
+    public void testGetCountOfPassesByCumulativeCard() {
+        assertEquals(3, controlSystem.getCountOfPassesByCumulativeCard());
+        assertNotEquals(2, controlSystem.getCountOfPassesByCumulativeCard());
+    }
+
+    @Test
+    public void testGetCountOfFailsByCumulativeCard() {
+        assertEquals(1, controlSystem.getCountOfFailsByCumulativeCard());
+        assertNotEquals(0, controlSystem.getCountOfFailsByCumulativeCard());
+    }
 
 }
