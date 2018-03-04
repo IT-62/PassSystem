@@ -17,7 +17,9 @@ public class ControlSystem {
     public ArrayList<Pass> passes = new ArrayList<>();
     public int travelPrice = 4;
     private static int turnstilesCount = 0;
-  
+    private enum CardType{
+        CUMULATIVE, MULTIJOURNEY, TEMPORARY
+    }
     private ControlSystem() {
     }
 
@@ -71,7 +73,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<TemporaryCard> getTemporaryCard(){
+    public ArrayList<TemporaryCard> getTemporaryCardList(){
         ArrayList<TemporaryCard> temporaryCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof TemporaryCard) temporaryCardsList.add((TemporaryCard)card);
@@ -79,7 +81,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<MultiJourneyCard> getMultiJourneyCard(){
+    public ArrayList<MultiJourneyCard> getMultiJourneyCardList(){
         ArrayList<MultiJourneyCard> multiJourneyCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof MultiJourneyCard) multiJourneyCardsList.add((MultiJourneyCard)card);
@@ -87,7 +89,295 @@ public class ControlSystem {
         return null;
     }
 
+    public int getCountOfTries(){
+        return passes.size();
+    }
+
     public int getCountOfPasses(){
-        return -1;
+        int ans = 0;
+        for (Pass pass : passes) {
+            if(pass.isPassed()) ans++;
+        }
+        return ans;
+    }
+
+    public int getCountOfFales(){
+        return passes.size() - getCountOfPasses();
+    }
+
+    public int getCountOfTriesOfCard(String type, String durType, String owType, String trType){
+        int countOfPasses = 0;
+        CardType cardType = CardType.valueOf(type);
+        DurationType durationType = DurationType.valueOf(durType);
+        OwnerType ownerType = OwnerType.valueOf(owType);
+        TravelsCountType travelsCountType = TravelsCountType.valueOf(trType);
+        switch (cardType){
+            case CUMULATIVE:{
+                for (Pass pass : passes) {
+                    if(getCardById(pass.getCardId()) instanceof CumulativeCard) countOfPasses++;
+                }
+            }
+            case TEMPORARY:{
+                switch (durationType){
+                    case MONTH:{
+                        switch (ownerType){
+                            case PUPIL:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL) countOfPasses++;
+                                }
+                            }
+                            case DEFAULT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT) countOfPasses++;
+                                }
+                            }
+                            case STUDENT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT) countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                    case TEN_DAYS:{
+                        switch (ownerType){
+                            case PUPIL:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL) countOfPasses++;
+                                }
+                            }
+                            case DEFAULT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT) countOfPasses++;
+                                }
+                            }
+                            case STUDENT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT) countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            case MULTIJOURNEY:{
+                switch (travelsCountType) {
+                    case FIVE: {
+                        switch (ownerType) {
+                            case PUPIL: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL)
+                                        countOfPasses++;
+                                }
+                            }
+                            case DEFAULT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT)
+                                        countOfPasses++;
+                                }
+                            }
+                            case STUDENT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT)
+                                        countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                    case TEN: {
+                        switch (ownerType) {
+                            case PUPIL: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL)
+                                        countOfPasses++;
+                                }
+                            }
+                            case DEFAULT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT)
+                                        countOfPasses++;
+                                }
+                            }
+                            case STUDENT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT)
+                                        countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return countOfPasses;
+    }
+
+
+    public int getCountOfPassesOfCard(String type, String durType, String owType, String trType){
+        int countOfPasses = 0;
+        CardType cardType = CardType.valueOf(type);
+        DurationType durationType = DurationType.valueOf(durType);
+        OwnerType ownerType = OwnerType.valueOf(owType);
+        TravelsCountType travelsCountType = TravelsCountType.valueOf(trType);
+        switch (cardType){
+            case CUMULATIVE:{
+                for (Pass pass : passes) {
+                    if(getCardById(pass.getCardId()) instanceof CumulativeCard) countOfPasses++;
+                }
+            }
+            case TEMPORARY:{
+                switch (durationType){
+                    case MONTH:{
+                        switch (ownerType){
+                            case PUPIL:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                            case DEFAULT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                            case STUDENT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.MONTH
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                    case TEN_DAYS:{
+                        switch (ownerType){
+                            case PUPIL:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                            case DEFAULT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                            case STUDENT:{
+                                for (Pass pass : passes) {
+                                    if(getCardById(pass.getCardId()) instanceof TemporaryCard
+                                            && ((TemporaryCard) getCardById(pass.getCardId())).getDurationType() == DurationType.TEN_DAYS
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT
+                                            && pass.isPassed()) countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            case MULTIJOURNEY:{
+                switch (travelsCountType) {
+                    case FIVE: {
+                        switch (ownerType) {
+                            case PUPIL: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                            case DEFAULT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                            case STUDENT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.FIVE
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                    case TEN: {
+                        switch (ownerType) {
+                            case PUPIL: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.PUPIL
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                            case DEFAULT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.DEFAULT
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                            case STUDENT: {
+                                for (Pass pass : passes) {
+                                    if (getCardById(pass.getCardId()) instanceof MultiJourneyCard
+                                            && ((MultiJourneyCard) getCardById(pass.getCardId())).getTravelsCountType() == TravelsCountType.TEN
+                                            && getCardById(pass.getCardId()).getOwnerType() == OwnerType.STUDENT
+                                            && pass.isPassed())
+                                        countOfPasses++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return countOfPasses;
+    }
+    public int getCountOfFailByCard(String type, String durType, String owType, String trType) {
+        return getCountOfTriesOfCard(type, durType, owType, trType) - getCountOfPassesOfCard(type, durType, owType, trType);
     }
 }
