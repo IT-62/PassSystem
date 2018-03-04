@@ -8,8 +8,8 @@ public class CumulativeCard extends Card {
     private int balance;
     private int travelPrice;
 
-    public CumulativeCard(UUID id, OwnerType ownerType, int balance, int travelPrice) {
-        super(id, ownerType);
+    public CumulativeCard(UUID id, int balance, int travelPrice) {
+        super(id, OwnerType.DEFAULT);
         this.balance = balance;
         this.travelPrice = travelPrice;
     }
@@ -31,5 +31,11 @@ public class CumulativeCard extends Card {
     @Override
     public boolean verify() {
         return withdraw();
+    }
+
+    @Override
+    public String toString() {
+        return "Card type: cumulative card\n" +
+               "Balance: " + balance + "\n";
     }
 }

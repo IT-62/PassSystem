@@ -12,7 +12,7 @@ public class TemporaryCard extends Card {
     public TemporaryCard(UUID id, OwnerType ownerType, DurationType durationType) {
         super(id, ownerType);
         this.durationType = durationType;
-        expirationDate = new Date(new Date().getTime() + durationType.getDaysLeft()*24*60*60*1000);
+        expirationDate = new Date(new Date().getTime() + (long)durationType.getDaysLeft()*24*60*60*1000);
     }
 
     public Date getExpirationDate() {
@@ -26,5 +26,11 @@ public class TemporaryCard extends Card {
     @Override
     public boolean verify() {
         return new Date().before(getExpirationDate());
+    }
+
+    @Override
+    public String toString() {
+        return "Card type: temporary card\n" +
+               "Expiration date: " + getExpirationDate().toString() + "\n";
     }
 }

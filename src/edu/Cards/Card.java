@@ -20,4 +20,7 @@ public abstract class Card {
     }
 
     public abstract boolean verify();
+
+    public abstract String toString();
+
 }
