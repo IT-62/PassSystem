@@ -17,7 +17,7 @@ public class ControlSystem {
     public ArrayList<Pass> passes = new ArrayList<>();
     public int travelPrice = 4;
     private static int turnstilesCount = 0;
-    private enum CardType{
+    private enum CardType {
         CUMULATIVE, MULTIJOURNEY, TEMPORARY, NULL
     }
     private ControlSystem() {
@@ -69,7 +69,7 @@ public class ControlSystem {
         return cards.get(index);
     }
 
-    public ArrayList<CumulativeCard> getCumulativeCardList(){
+    public ArrayList<CumulativeCard> getCumulativeCardList() {
         ArrayList<CumulativeCard> cumulativeCardsList = new ArrayList<>();
         for(Card card : cards) {
            if(card instanceof CumulativeCard) cumulativeCardsList.add((CumulativeCard)card);
@@ -77,7 +77,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<TemporaryCard> getTemporaryCardList(){
+    public ArrayList<TemporaryCard> getTemporaryCardList() {
         ArrayList<TemporaryCard> temporaryCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof TemporaryCard) temporaryCardsList.add((TemporaryCard)card);
@@ -85,7 +85,7 @@ public class ControlSystem {
         return null;
     }
 
-    public ArrayList<MultiJourneyCard> getMultiJourneyCardList(){
+    public ArrayList<MultiJourneyCard> getMultiJourneyCardList() {
         ArrayList<MultiJourneyCard> multiJourneyCardsList = new ArrayList<>();
         for(Card card : cards) {
             if(card instanceof MultiJourneyCard) multiJourneyCardsList.add((MultiJourneyCard)card);
@@ -97,7 +97,7 @@ public class ControlSystem {
         return passes.size();
     }
 
-    public int getCountOfPasses(){
+    public int getCountOfPasses() {
         int res = 0;
         for (Pass pass : passes) {
             if(pass.isPassed()) res++;
@@ -153,8 +153,8 @@ public class ControlSystem {
 
     public int getCountOfPassesByMultiJourneyCard(String ownType, String trCountType) {
         int res = 0;
-        OwnerType ownerType = OwnerType.DEFAULT;
-        TravelsCountType travelsCountType = TravelsCountType.NULL;
+        OwnerType ownerType;
+        TravelsCountType travelsCountType;
         try {
             ownerType = OwnerType.valueOf(ownType);
             travelsCountType = TravelsCountType.valueOf(trCountType);
