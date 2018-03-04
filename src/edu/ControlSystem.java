@@ -134,8 +134,8 @@ public class ControlSystem {
         OwnerType ownerType;
         TravelsCountType travelsCountType;
         try{
-            ownerType = OwnerType.valueOf(ownType);
-            travelsCountType = TravelsCountType.valueOf(trCountType);
+            ownerType = OwnerType.valueOf(ownType.toUpperCase());
+            travelsCountType = TravelsCountType.valueOf(trCountType.toUpperCase());
         }
         catch (Exception e){
             return -1;
@@ -156,8 +156,8 @@ public class ControlSystem {
         OwnerType ownerType;
         TravelsCountType travelsCountType;
         try {
-            ownerType = OwnerType.valueOf(ownType);
-            travelsCountType = TravelsCountType.valueOf(trCountType);
+            ownerType = OwnerType.valueOf(ownType.toUpperCase());
+            travelsCountType = TravelsCountType.valueOf(trCountType.toUpperCase());
         }
         catch (Exception e){
             return -1;
@@ -183,8 +183,8 @@ public class ControlSystem {
         OwnerType ownerType;
         DurationType durationType;
         try {
-            ownerType = OwnerType.valueOf(ownType);
-            durationType = DurationType.valueOf(durType);
+            ownerType = OwnerType.valueOf(ownType.toUpperCase());
+            durationType = DurationType.valueOf(durType.toUpperCase());
         }
         catch (Exception e){
             return -1;
@@ -205,8 +205,8 @@ public class ControlSystem {
         OwnerType ownerType;
         DurationType durationType;
         try {
-            ownerType = OwnerType.valueOf(ownType);
-            durationType = DurationType.valueOf(durType);
+            ownerType = OwnerType.valueOf(ownType.toUpperCase());
+            durationType = DurationType.valueOf(durType.toUpperCase());
         }
         catch (Exception e){
             return -1;
