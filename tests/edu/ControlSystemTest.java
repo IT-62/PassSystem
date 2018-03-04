@@ -95,4 +95,22 @@ public class ControlSystemTest {
         assertNotEquals(0, controlSystem.getCountOfFailsByCumulativeCard());
     }
 
+    @Test
+    public void testGetCountOfTriesByMultiJourneyCard() {
+        assertEquals(1, controlSystem.getCountOfTriesByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfTriesByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
+    @Test
+    public void testGetCountOfPassesByMultiJourneyCard() {
+        assertEquals(1, controlSystem.getCountOfPassesByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfPassesByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
+    @Test
+    public void testGetCountOfFailsByMultiJourneyCard() {
+        assertEquals(0, controlSystem.getCountOfFailsByMultiJourneyCard("PUPIL", "FIVE"));
+        assertNotEquals(3, controlSystem.getCountOfFailsByMultiJourneyCard("PUPIL", "FIVE"));
+    }
+
 }
