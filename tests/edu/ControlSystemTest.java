@@ -46,9 +46,12 @@ public class ControlSystemTest {
         controlSystem.turnstiles.get(3).acceptPass((MultiJourneyCard) controlSystem.getCardByIndex(3));
         controlSystem.turnstiles.get(0).acceptPass((TemporaryCard) controlSystem.getCardByIndex(5));
 
+        System.out.println(controlSystem.getCountOfPasses());
+
         for (Pass pass : controlSystem.passes) {
             System.out.println(pass.toString());
         }
+
 
     }
 

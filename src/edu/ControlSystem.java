@@ -101,7 +101,7 @@ public class ControlSystem {
         return ans;
     }
 
-    public int getCountOfFales(){
+    public int getCountOfFailes(){
         return passes.size() - getCountOfPasses();
     }
 
