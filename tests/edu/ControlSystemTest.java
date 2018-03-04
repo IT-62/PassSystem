@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class ControlSystemTest {
-    ControlSystem controlSystem;
+    private ControlSystem controlSystem;
     @Before
     public void setUp() throws Exception {
         addCardsAndTurnstiles();
@@ -24,8 +24,7 @@ public class ControlSystemTest {
 
     @After
     public void tearDown() throws Exception {
-        controlSystem.deleteInstance();
-       // controlSystem.passes = new  ArrayList<>();
+        ControlSystem.deleteInstance();
     }
     @Test
     public void testPasses(){
@@ -74,9 +73,25 @@ public class ControlSystemTest {
     }
 
     @Test
-    public void testGetCountOfFailes() {
-        assertEquals(1, controlSystem.getCountOfFailes());
+    public void testGetCountOfFails() {
+        assertEquals(1, controlSystem.getCountOfFails());
     }
     
+    @Test
+    public void testGetCountOfTriesByTemporaryCard() {
+        assertEquals(0, controlSystem.getCountOfTriesByTemporaryCard("DEFAULT", "TEN_DAYS"));
+        assertEquals(1, controlSystem.getCountOfTriesByTemporaryCard("PUPIL", "MONTH"));
+    }
 
+    @Test
+    public void testGetCountOfPassesByTemporaryCard() {
+        assertEquals(0, controlSystem.getCountOfPassesByTemporaryCard("DEFAULT", "TEN_DAYS"));
+        assertEquals(1, controlSystem.getCountOfPassesByTemporaryCard("PUPIL", "MONTH"));
+    }
+
+    @Test
+    public void testGetCountOfFailsByTemporaryCard() {
+        assertEquals(0, controlSystem.getCountOfFailsByTemporaryCard("DEFAULT", "TEN_DAYS"));
+        assertEquals(0, controlSystem.getCountOfFailsByTemporaryCard("PUPIL", "MONTH"));
+    }
 }

@@ -31,7 +31,7 @@ public class ControlSystem {
     }
 
     public static void deleteInstance() {
-        if(instance instanceof ControlSystem) instance = null;
+        if(instance != null) instance = null;
     }
 
     public void createTurnstile() {
@@ -105,7 +105,7 @@ public class ControlSystem {
         return res;
     }
 
-    public int getCountOfFailes(){
+    public int getCountOfFails(){
         return passes.size() - getCountOfPasses();
     }
 
@@ -131,8 +131,8 @@ public class ControlSystem {
 
     public int getCountOfTriesByMultiJourneyCard(String ownType, String trCountType) {
         int res = 0;
-        OwnerType ownerType = OwnerType.DEFAULT;
-        TravelsCountType travelsCountType = TravelsCountType.NULL;
+        OwnerType ownerType;
+        TravelsCountType travelsCountType;
         try{
             ownerType = OwnerType.valueOf(ownType);
             travelsCountType = TravelsCountType.valueOf(trCountType);
@@ -176,8 +176,8 @@ public class ControlSystem {
 
     public int getCountOfTriesByTemporaryCard(String ownType, String durType) {
         int res = 0;
-        OwnerType ownerType = OwnerType.DEFAULT;
-        DurationType durationType = DurationType.NULL;
+        OwnerType ownerType;
+        DurationType durationType;
         try {
             ownerType = OwnerType.valueOf(ownType);
             durationType = DurationType.valueOf(durType);
@@ -186,18 +186,20 @@ public class ControlSystem {
             return -1;
         }
         for (Pass pass : passes) {
-            TemporaryCard temporaryCard = (TemporaryCard) getCardById(pass.getCardId());
-            if(temporaryCard instanceof TemporaryCard
-                    && temporaryCard.getOwnerType() == ownerType
-                    && temporaryCard.getDurationType() == durationType) res++;
+            Card card = getCardById(pass.getCardId());
+            if(card instanceof TemporaryCard) {
+                TemporaryCard tempCard = (TemporaryCard) card;
+                if (card.getOwnerType() == ownerType
+                        && tempCard.getDurationType() == durationType) res++;
+            }
         }
         return res;
     }
 
     public int getCountOfPassesByTemporaryCard(String ownType, String durType) {
         int res = 0;
-        OwnerType ownerType = OwnerType.DEFAULT;
-        DurationType durationType = DurationType.NULL;
+        OwnerType ownerType;
+        DurationType durationType;
         try {
             ownerType = OwnerType.valueOf(ownType);
             durationType = DurationType.valueOf(durType);
@@ -206,11 +208,13 @@ public class ControlSystem {
             return -1;
         }
         for (Pass pass : passes) {
-            TemporaryCard temporaryCard = (TemporaryCard) getCardById(pass.getCardId());
-            if(temporaryCard instanceof TemporaryCard
-                    && temporaryCard.getOwnerType() == ownerType
-                    && temporaryCard.getDurationType() == durationType
-                    && pass.isPassed()) res++;
+            Card card = getCardById(pass.getCardId());
+            if(card instanceof TemporaryCard) {
+                TemporaryCard tempCard = (TemporaryCard) card;
+                if (tempCard.getOwnerType() == ownerType
+                        && tempCard.getDurationType() == durationType
+                        && pass.isPassed()) res++;
+            }
         }
         return res;
     }
