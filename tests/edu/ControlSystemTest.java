@@ -18,17 +18,17 @@ import static org.junit.Assert.*;
 public class ControlSystemTest {
     private ControlSystem controlSystem;
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         addCardsAndTurnstiles();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         ControlSystem.deleteInstance();
     }
+
     @Test
     public void testPasses(){
-        System.out.println(controlSystem.getCountOfTriesByCumulativeCard());
         for (Pass pass : controlSystem.passes) {
             System.out.println(pass.toString());
         }
@@ -55,8 +55,6 @@ public class ControlSystemTest {
         controlSystem.turnstiles.get(2).acceptPass((CumulativeCard) controlSystem.getCardByIndex(1));
         controlSystem.turnstiles.get(3).acceptPass((MultiJourneyCard) controlSystem.getCardByIndex(2));
         controlSystem.turnstiles.get(0).acceptPass((TemporaryCard) controlSystem.getCardByIndex(4));
-
-
     }
 
     @Test
