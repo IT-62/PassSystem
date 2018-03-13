@@ -29,7 +29,8 @@ public class CumulativeCard extends Card {
     }
 
     @Override
-    public boolean verify() {
+    public boolean verify()
+    {
         return withdraw();
     }
 
