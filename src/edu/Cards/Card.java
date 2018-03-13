@@ -11,7 +11,7 @@ public abstract class Card {
     public Card(UUID id, OwnerType ownerType) {
         this.id = id;
         this.ownerType = ownerType;
-        isBlocked = true;
+        isBlocked = false;
     }
 
     public UUID getID(){
