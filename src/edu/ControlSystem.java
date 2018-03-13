@@ -233,4 +233,12 @@ public class ControlSystem {
         return getCountOfTriesByTemporaryCard(ownType, durType) - getCountOfPassesByTemporaryCard(ownType, durType);
     }
 
+    public void removeBlockedCard(Card card) {
+        if(!card.verify()) {
+            card.block();
+            if (card.isBlocked()) {
+                cards.remove(card);
+            }
+        }
+    }
 }

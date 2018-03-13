@@ -24,13 +24,13 @@ public class MultiJourneyCard extends Card {
 
     @Override
     public boolean verify() {
-        boolean isVarified = false;
+        boolean isVerified = false;
         if(travelsLeft > 0){
             travelsLeft--;
-            isVarified = true;
+            isVerified = true;
         }
-        if(!isVarified) block();
-        return isVarified;
+        if(!isVerified) block();
+        return isVerified;
     }
 
     @Override
