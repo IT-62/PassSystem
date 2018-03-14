@@ -25,7 +25,9 @@ public class TemporaryCard extends Card {
 
     @Override
     public boolean verify() {
-        return new Date().before(getExpirationDate());
+        boolean isVerified = new Date().before(getExpirationDate());
+        if(!isVerified) block();
+        return isVerified;
     }
 
     @Override

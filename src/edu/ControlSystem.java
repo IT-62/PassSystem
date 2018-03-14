@@ -65,6 +65,12 @@ public class ControlSystem {
                card.toString();
     }
 
+    public void removeBlockedCards(){
+        for (Card card : cards)
+            if(card.isBlocked()) cards.remove(card);
+
+    }
+
     public Card getCardByIndex(int index){
         return cards.get(index);
     }
